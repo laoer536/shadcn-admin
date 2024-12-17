@@ -1,0 +1,15 @@
+FROM oven/bun AS build
+WORKDIR /app
+COPY . .
+RUN bun install
+
+ENV NODE_ENV=production
+RUN bun run prisma:generate
+RUN bun run frontend:build
+
+FROM nginx:alpine AS deploy
+WORKDIR /app
+COPY ./nginx-frontend.conf /etc/nginx/nginx.conf
+COPY --from=build /app/apps/frontend/dist /usr/share/nginx/html
+
+EXPOSE 5173

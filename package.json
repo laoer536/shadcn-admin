@@ -1,0 +1,32 @@
+{
+  "name": "shadcn-admin",
+  "version": "1.0.50",
+  "workspaces": [
+    "apps/*"
+  ],
+  "trustedDependencies": [
+    "@prisma/client",
+    "@prisma/engines",
+    "prisma"
+  ],
+  "scripts": {
+    "dev": "bun --filter '*' dev",
+    "build": "bun --filter '*' build",
+    "lint": "bun --filter '*' lint",
+    "frontend": "bun run --filter frontend",
+    "frontend:build": "bun frontend build",
+    "backend": "bun run --filter bun-api",
+    "backend:docker-build": "bun backend build:docker",
+    "prisma:new": "bun backend prisma:new",
+    "prisma:pull": "bun backend prisma:pull",
+    "prisma:push": "bun backend prisma:push",
+    "prisma:deploy": "bun backend prisma:deploy",
+    "prisma:generate": "bun backend prisma:generate",
+    "docker:dev": "docker-compose up -d",
+    "docker:deploy": "docker-compose -f docker-compose-deploy.yml up -d --build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}

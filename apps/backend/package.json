@@ -1,0 +1,35 @@
+{
+  "name": "bun-api",
+  "version": "1.0.50",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "build": "bun build src/index.ts --target bun --outdir ./dist",
+    "build:docker": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile server ./src/index.ts",
+    "start": "NODE_ENV=production bun src/index.ts",
+    "prisma:new": "prisma migrate dev && prisma generate",
+    "prisma:pull": "prisma db pull && prisma generate",
+    "prisma:push": "prisma generate && prisma db push",
+    "prisma:deploy": "prisma generate && prisma migrate deploy",
+    "prisma:generate": "prisma generate",
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx --fix"
+  },
+  "dependencies": {
+    "@elysiajs/bearer": "^1.1.2",
+    "@elysiajs/cors": "^1.1.1",
+    "@elysiajs/jwt": "^1.1.1",
+    "@elysiajs/swagger": "^1.1.6",
+    "@prisma/client": "^6.0.1",
+    "elysia": "^1.1.26",
+    "ioredis": "^5.4.1",
+    "nodemailer": "^6.9.16"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.17",
+    "@vitejs/plugin-react-swc": "^3.7.2",
+    "bun-types": "^1.1.39",
+    "eslint": "^8.57.1",
+    "eslint-config-code-style-lint-ts": "^3.1.1",
+    "prisma": "^6.0.1"
+  }
+}
